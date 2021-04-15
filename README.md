@@ -7,7 +7,7 @@ Serviço de Pedidos criado com base em Java 11 e Spring Boot 2.4.4
 Clone o projeto para o repositório desejado. Se for a primeira vez executando o projeto, execute os seguintes comandos na raiz do mesmo:
 
 ```bash
-mvn clean install -Dskiptests
+mvn clean install -DskipTests
 
 docker build -t order-service:v1 .
 
@@ -16,10 +16,9 @@ docker run -p 8080:8080 order-service:v1
 
 A partir dos comandos anteriores o projeto deverá estar rodando em  **http://localhost:8080**.
 
-Uma vez executados, para subir a aplicação novamente basta executar o último comando. O segundo e o terceiro comandos só serão executados novamente se houverem alterações no projeto.
+Uma vez executados, para subir a aplicação novamente basta executar o último comando. O primeiro e o segundo comandos só serão executados novamente se houverem alterações no projeto.
 
 ## Endpoints
-
 
 > CONSULTAR CEP -> http://localhost:8080/api/consultacep/{cep}
 
