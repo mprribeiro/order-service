@@ -20,40 +20,45 @@ import com.mprribeiro.orderservice.services.exception.ObjectNotFoundException;
 @RestController
 @RequestMapping(value = "/api/status")
 public class StatusResource {
-	
+
 	@Autowired
 	private PedidoService pedidoService;
-	
+
 	@Autowired
 	private StatusService statusService;
-	
-	@RequestMapping(method=RequestMethod.GET)
+
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<StatusResponse> getStatus(@RequestBody @Valid StatusPayload status) {
 		Pedido pedido = new Pedido();
 		StatusResponse statusRes = new StatusResponse(status.getPedido());
-		
-		try {
-			pedido = pedidoService.find(status.getPedido());
-		} catch (ObjectNotFoundException e) {
-			statusRes.addStatus(Status.CODIGO_PEDIDO_INVALIDO);
-			return ResponseEntity.ok(statusRes);
-		}
 		
 		if (status.getStatus().equalsIgnoreCase(Status.REPROVADO.getDescricao())) {
 			System.out.println("Entrei REPROVADO!");
 			statusRes.addStatus(Status.REPROVADO);
 			return ResponseEntity.ok(statusRes);
 		}
-		
-		statusRes = statusService.verifyTotalItems(status, pedido, statusRes);
-		statusRes = statusService.verifyTotalPrice(status, pedido, statusRes);
-		
-		if (statusRes.getStatuses().isEmpty()) {
-			statusRes.addStatus(Status.APROVADO);
+
+		try {
+			pedido = pedidoService.find(status.getPedido());
+		} catch (ObjectNotFoundException e) {
+			statusRes.addStatus(Status.CODIGO_PEDIDO_INVALIDO);
+			return ResponseEntity.ok(statusRes);
 		}
-		
+
+		if (status.getStatus().equalsIgnoreCase(Status.APROVADO.getDescricao())) {
+			statusRes = statusService.verifyTotalItems(status, pedido, statusRes);
+			statusRes = statusService.verifyTotalPrice(status, pedido, statusRes);
+
+			if (statusRes.getStatuses().isEmpty()) {
+				statusRes.addStatus(Status.APROVADO);
+			}
+			
+			return ResponseEntity.ok(statusRes);
+		}
+
+		statusRes.addStatus(Status.STATUS_INVALIDO);
 		return ResponseEntity.ok(statusRes);
-		
+
 	}
 
 }

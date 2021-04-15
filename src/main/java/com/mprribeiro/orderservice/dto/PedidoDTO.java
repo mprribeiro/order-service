@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 public class PedidoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@NotNull
+	@NotEmpty
 	private String pedido;
 	
 	private List<ItemDTO> itens = new ArrayList<>();
