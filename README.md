@@ -84,6 +84,12 @@ Payload: {
 }
 ```
 
+## Banco de Dados H2
+
+Para consultar o banco de dados em memória, acesse o seguinte link através do navegador:
+
+http://localhost:8080/h2-console/
+
 ## Testes
 Para executar os testes, abra um terminal na raiz do projeto e execute:
 
