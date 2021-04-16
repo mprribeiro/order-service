@@ -43,7 +43,6 @@ public class PedidoRepositoryTest {
     	boolean orderExists = repository.existsByPedido(ped);
 
     	Assertions.assertThat(orderExists).isFalse();
-    }
-    
+    }    
     
 }

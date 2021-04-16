@@ -7,7 +7,7 @@ Serviço de Pedidos criado com base em Java 11 e Spring Boot 2.4.4
 Clone o projeto para o repositório desejado. Se for a primeira vez executando o projeto, execute os seguintes comandos na raiz do mesmo:
 
 ```bash
-mvn clean install -DskipTests
+mvn clean package -DskipTests
 
 docker build -t order-service:v1 .
 

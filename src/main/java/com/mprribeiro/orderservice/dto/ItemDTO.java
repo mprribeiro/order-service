@@ -2,18 +2,18 @@ package com.mprribeiro.orderservice.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class ItemDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@NotEmpty
+	@NotNull
 	private String descricao;
 	
-	@NotEmpty
+	@NotNull
 	private Double precoUnitario;
 	
-	@NotEmpty
+	@NotNull
 	private Integer qtd;
 	
 	public ItemDTO() {	}

@@ -50,7 +50,5 @@ public class PedidoResource {
 		Pedido obj = pedidoService.fromDTO(pedidoDTO);
 		obj = pedidoService.update(obj);
 		return ResponseEntity.noContent().build();
-	}
-	
-	
+	}	
 }

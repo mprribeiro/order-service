@@ -1,7 +1,5 @@
 package com.mprribeiro.orderservice.services;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
@@ -45,7 +43,7 @@ public class PedidoServiceTest {
 	
 	@Test
     @DisplayName("Deve salvar o pedido")
-    public void saveBookTest() {
+    public void saveOrderTest() {
 		Pedido pedido = createNewPedido();
 		
         Mockito.when(repository.save(Mockito.any(Pedido.class))).thenReturn(pedido);
@@ -80,16 +78,6 @@ public class PedidoServiceTest {
         Pedido pedidoEncontrado =  service.find(ped);
 
         Assertions.assertThat(pedidoEncontrado.getPedido()).isEqualTo(ped);
-    }
-	
-	@Test
-    @DisplayName("Deve deletar um pedido com sucesso")
-    public void deleteOrderTest() {
-		Pedido pedido = createNewPedido();
-	
-		assertDoesNotThrow(() -> service.delete(pedido.getPedido()));
-
-        Mockito.verify(repository, Mockito.times(1)).delete(pedido);
     }
 	
 	@Test
